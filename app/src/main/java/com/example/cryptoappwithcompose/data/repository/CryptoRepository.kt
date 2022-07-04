@@ -7,17 +7,19 @@ import com.example.cryptoappwithcompose.data.remote.model.CryptoList
 import com.example.cryptoappwithcompose.utils.Constants.API_KEY
 import com.example.cryptoappwithcompose.utils.Constants.ATTRIBUTES
 import com.example.cryptoappwithcompose.utils.Resource
+import dagger.hilt.android.scopes.ActivityScoped
 import retrofit2.Response
 import java.lang.Exception
 import javax.inject.Inject
 
+@ActivityScoped
 class CryptoRepository @Inject constructor(
     private val apiFactory: ApiFactory
 ): CryptoRepository {
 
     override suspend fun getCryptoList(): Resource<CryptoList> {
         val response = try {
-            apiFactory.getCryptoList(API_KEY)
+            apiFactory.getCryptoList()
         }catch (exception: Exception){
             return Resource.Error("Error")
         }
@@ -26,7 +28,7 @@ class CryptoRepository @Inject constructor(
 
     override suspend fun getCrypto(id: String): Resource<Crypto> {
         val response = try {
-            apiFactory.getCrypto(API_KEY,id, ATTRIBUTES)
+            apiFactory.getCrypto()
         }catch (exception: Exception){
             return Resource.Error(exception.toString())
         }

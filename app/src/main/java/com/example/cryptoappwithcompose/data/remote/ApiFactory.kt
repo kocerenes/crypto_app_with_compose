@@ -11,16 +11,10 @@ interface ApiFactory {
 
     //https://api.nomics.com/v1/prices?key=<Kendi API Anahtarınız>
 
-    @GET("prices")
-    suspend fun getCryptoList(
-        @Query("key") key : String
-    ): CryptoList
+    @GET("https://raw.githubusercontent.com/atilsamancioglu/IA32-CryptoComposeData/main/cryptolist.json")
+    suspend fun getCryptoList(): CryptoList
 
-    @GET("currencies")
-    suspend fun getCrypto(
-        @Query("key") key : String,
-        @Query("ids") id : String,
-        @Query("attributes") attributes : String
-    ): Crypto
+    @GET("https://raw.githubusercontent.com/atilsamancioglu/IA32-CryptoComposeData/main/crypto.json")
+    suspend fun getCrypto(): Crypto
 
 }

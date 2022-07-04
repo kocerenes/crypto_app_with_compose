@@ -12,8 +12,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.example.cryptoappwithcompose.ui.theme.CryptoAppWithComposeTheme
 import com.example.cryptoappwithcompose.ui.view.CryptoDetailScreen
 import com.example.cryptoappwithcompose.ui.view.CryptoListScreen
@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
                         CryptoListScreen(navController = navController)
                     }
 
-                    composable("crypto_detail_screen", arguments = listOf(
+                    composable("crypto_detail_screen/{cryptoId}/{cryptoPrice}", arguments = listOf(
                         navArgument("cryptoId"){
                             type = NavType.StringType
                         },
